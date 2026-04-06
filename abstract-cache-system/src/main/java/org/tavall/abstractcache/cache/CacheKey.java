@@ -144,6 +144,15 @@ public class CacheKey<K> implements ICacheKey<K> {
         return rawKey;
     }
 
+    /**
+     * Legacy alias for {@link #getRawCacheKey()}.
+     *
+     * @return raw key
+     */
+    public K getUserCacheKey() {
+        return rawKey;
+    }
+
     @Override
     public CacheType getCacheType() {
         return cacheType;

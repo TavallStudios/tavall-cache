@@ -8,5 +8,6 @@ public enum CacheType {
     REDIS,
     DISK,
     HYBRID,
-    DATABASE
+    DATABASE,
+    PERMANENT
 }

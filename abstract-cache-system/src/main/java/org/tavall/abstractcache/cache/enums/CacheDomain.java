@@ -10,5 +10,19 @@ public enum CacheDomain {
     TRACKING,
     DELIVERY,
     USER,
-    ROUTES
+    ROUTES,
+    COMPANIONS,
+    TROOPS,
+    KINGDOMS,
+    ECONOMY,
+    GUILDS,
+    CASTLES,
+    EVENTS,
+    INFRASTRUCTURE,
+    DEBUG,
+    PLAYER_PROFILE,
+    WAR_STATE,
+    INVENTORY_BACKUP,
+    COMMAND_MODE,
+    TOURNAMENT
 }
