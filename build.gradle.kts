@@ -26,7 +26,7 @@ subprojects {
     apply(plugin = "maven-publish")
 
     extensions.configure<JavaPluginExtension> {
-        toolchain.languageVersion = JavaLanguageVersion.of(21)
+        toolchain.languageVersion = JavaLanguageVersion.of(25)
         withSourcesJar()
         withJavadocJar()
     }
