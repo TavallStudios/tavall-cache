@@ -1,0 +1,13 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+# To regenerate this file, run: ./gradlew :abstract-cache-storage-mongo:dependencies --write-locks
+com.fasterxml.jackson.core:jackson-annotations:2.18.3=compileClasspath
+com.fasterxml.jackson.core:jackson-core:2.18.3=compileClasspath
+com.fasterxml.jackson.core:jackson-databind:2.18.3=compileClasspath
+org.mongodb:bson:4.11.1=compileClasspath
+org.mongodb:mongodb-driver-core:4.11.1=compileClasspath
+org.mongodb:mongodb-driver-sync:4.11.1=compileClasspath
+org.tavall:tavall-di:1.0.0=compileClasspath
+org.tavall:tavall-logging:1.0.0=compileClasspath
+empty=annotationProcessor

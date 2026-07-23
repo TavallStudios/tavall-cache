@@ -1,0 +1,17 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+# To regenerate this file, run: ./gradlew :abstract-cache-storage-redis:dependencies --write-locks
+com.fasterxml.jackson.core:jackson-annotations:2.18.3=compileClasspath
+com.fasterxml.jackson.core:jackson-core:2.18.3=compileClasspath
+com.fasterxml.jackson.core:jackson-databind:2.18.3=compileClasspath
+com.google.code.gson:gson:2.13.2=compileClasspath
+com.google.errorprone:error_prone_annotations:2.41.0=compileClasspath
+org.apache.commons:commons-pool2:2.12.1=compileClasspath
+org.json:json:20250517=compileClasspath
+org.slf4j:slf4j-api:1.7.36=compileClasspath
+org.tavall:tavall-di:1.0.0=compileClasspath
+org.tavall:tavall-logging:1.0.0=compileClasspath
+redis.clients.authentication:redis-authx-core:0.1.1-beta2=compileClasspath
+redis.clients:jedis:7.2.0=compileClasspath
+empty=annotationProcessor
