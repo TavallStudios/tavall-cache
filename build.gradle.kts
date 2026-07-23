@@ -5,7 +5,9 @@ plugins {
 }
 
 group = "org.tavall"
-version = "1.0.0"
+extra["versionTagPrefix"] = "tavall-cache"
+apply(from = "gradle/git-version.gradle.kts")
+version = extra["gitVersion"] as String
 
 val jacksonDatabind = libs.jackson.databind
 val jedis = libs.jedis
