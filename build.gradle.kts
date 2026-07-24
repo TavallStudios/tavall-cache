@@ -10,7 +10,9 @@ apply(from = "gradle/git-version.gradle.kts")
 version = extra["gitVersion"] as String
 
 val jacksonDatabind = libs.jackson.databind
+val jacksonBom = libs.jackson.bom
 val jedis = libs.jedis
+val junitBom = libs.junit.bom
 val junitJupiter = libs.junit.jupiter
 val junitPlatformLauncher = libs.junit.platform.launcher
 val mongodbDriver = libs.mongodb.driver
@@ -38,6 +40,10 @@ subprojects {
 
     dependencyLocking {
         lockAllConfigurations()
+    }
+
+    dependencies {
+        "testImplementation"(platform(junitBom))
     }
 
     tasks.withType<Test>().configureEach {
@@ -102,6 +108,7 @@ project(":abstract-cache-system") {
 project(":abstract-cache-semantic") {
     dependencies {
         "api"(project(":abstract-cache-system"))
+        "api"(platform(jacksonBom))
         "api"(jacksonDatabind)
         "testImplementation"(junitJupiter)
         "testRuntimeOnly"(junitPlatformLauncher)
