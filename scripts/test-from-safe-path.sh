@@ -21,4 +21,4 @@ tar \
     -cf - . | tar -C "$mirror_dir" -xf -
 
 cd "$mirror_dir"
-exec mvn test "$@"
+exec ./gradlew test "$@"
