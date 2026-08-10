@@ -9,11 +9,14 @@ import org.tavall.abstractcache.cache.interfaces.ICacheStats;
 import org.tavall.abstractcache.cache.interfaces.ICacheValue;
 import org.tavall.abstractcache.cache.metadata.CacheMetaData;
 
-import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 
 /**
@@ -142,9 +145,8 @@ public abstract class AbstractCache<K, V> {
             return entry.getValue();
         }
 
-        if (entry != null) {
+        if (entry != null && cache.remove(fullKey, entry)) {
             expiredEntries.incrementAndGet();
-            cache.remove(fullKey);
         }
 
         return null;
@@ -172,6 +174,45 @@ public abstract class AbstractCache<K, V> {
         return getIfPresent(rawKey, domain, type, version, source) != null;
     }
 
+    /**
+     * Returns an immutable snapshot containing only live entries.
+     */
+    public Map<ICacheKey<K>, V> snapshotEntries() {
+        cleanupExpired();
+        LinkedHashMap<ICacheKey<K>, V> snapshot = new LinkedHashMap<>();
+        cache.forEach((key, value) -> {
+            if (!value.isExpired()) {
+                snapshot.put(key, value.getValue());
+            }
+        });
+        return Map.copyOf(snapshot);
+    }
+
+    /**
+     * Returns an immutable snapshot containing only live values.
+     */
+    public List<V> snapshotValues() {
+        return List.copyOf(snapshotEntries().values());
+    }
+
+    /**
+     * Removes live entries matching the supplied domain predicate.
+     */
+    public int removeIf(BiPredicate<ICacheKey<K>, V> predicate) {
+        Objects.requireNonNull(predicate, "predicate");
+        cleanupExpired();
+        int removed = 0;
+        for (Map.Entry<ICacheKey<K>, ICacheValue<V>> entry : cache.entrySet()) {
+            ICacheValue<V> value = entry.getValue();
+            if (!value.isExpired()
+                    && predicate.test(entry.getKey(), value.getValue())
+                    && cache.remove(entry.getKey(), value)) {
+                removed++;
+            }
+        }
+        return removed;
+    }
+
     public void clear() {
         cache.clear();
         expiredEntries.set(0);
@@ -184,10 +225,9 @@ public abstract class AbstractCache<K, V> {
     public int cleanupExpired() {
         int removed = 0;
         long now = System.currentTimeMillis();
-        for (Iterator<Map.Entry<ICacheKey<K>, ICacheValue<V>>> it = cache.entrySet().iterator(); it.hasNext(); ) {
-            Map.Entry<ICacheKey<K>, ICacheValue<V>> entry = it.next();
-            if (entry.getValue().isExpired(now)) {
-                it.remove();
+        for (Map.Entry<ICacheKey<K>, ICacheValue<V>> entry : cache.entrySet()) {
+            ICacheValue<V> value = entry.getValue();
+            if (value.isExpired(now) && cache.remove(entry.getKey(), value)) {
                 expiredEntries.incrementAndGet();
                 removed++;
             }
