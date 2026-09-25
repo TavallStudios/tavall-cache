@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.Copy
 import java.util.zip.ZipFile
 
 plugins {
@@ -203,5 +204,17 @@ project(":abstract-cache-suite") {
         classpath = integrationTestSourceSet.runtimeClasspath
         useJUnitPlatform()
         shouldRunAfter(tasks.named("test"))
+    }
+}
+
+
+subprojects {
+    val artifactFileName = "$name.jar"
+    tasks.register<Copy>("tavallCiArtifact") {
+        val binaryJar = tasks.named<Jar>("jar")
+        dependsOn(binaryJar)
+        from(binaryJar.flatMap { it.archiveFile })
+        into(rootProject.layout.buildDirectory.dir("tavall-ci-artifacts"))
+        rename { artifactFileName }
     }
 }

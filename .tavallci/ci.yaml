@@ -22,9 +22,28 @@ dependencies:
     role: SHARED_DEP
     selector: required-source
 
+artifacts:
+  - name: abstract-cache-system
+    path: build/tavall-ci-artifacts/abstract-cache-system.jar
+  - name: abstract-cache-semantic
+    path: build/tavall-ci-artifacts/abstract-cache-semantic.jar
+  - name: abstract-cache-storage-memory
+    path: build/tavall-ci-artifacts/abstract-cache-storage-memory.jar
+  - name: abstract-cache-storage-disk
+    path: build/tavall-ci-artifacts/abstract-cache-storage-disk.jar
+  - name: abstract-cache-storage-redis
+    path: build/tavall-ci-artifacts/abstract-cache-storage-redis.jar
+  - name: abstract-cache-storage-mongo
+    path: build/tavall-ci-artifacts/abstract-cache-storage-mongo.jar
+  - name: abstract-cache-storage-postgres
+    path: build/tavall-ci-artifacts/abstract-cache-storage-postgres.jar
+  - name: abstract-cache-storage-qdrant
+    path: build/tavall-ci-artifacts/abstract-cache-storage-qdrant.jar
+
 requiredChecks:
   - quality
   - integration
+  - artifact
 
 checks:
   quality:
@@ -65,3 +84,15 @@ checks:
     executor: gradle
     tasks:
       - ":abstract-cache-suite:integrationTest"
+
+  artifact:
+    executor: gradle
+    tasks:
+      - :abstract-cache-system:tavallCiArtifact
+      - :abstract-cache-semantic:tavallCiArtifact
+      - :abstract-cache-storage-memory:tavallCiArtifact
+      - :abstract-cache-storage-disk:tavallCiArtifact
+      - :abstract-cache-storage-redis:tavallCiArtifact
+      - :abstract-cache-storage-mongo:tavallCiArtifact
+      - :abstract-cache-storage-postgres:tavallCiArtifact
+      - :abstract-cache-storage-qdrant:tavallCiArtifact
