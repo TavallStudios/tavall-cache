@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.Copy
 import java.util.zip.ZipFile
 
 plugins {
@@ -34,28 +35,10 @@ subprojects {
     }
 
     repositories {
-        mavenCentral()
-        val githubToken = providers.environmentVariable("GITHUB_TOKEN").orNull
-        if (!githubToken.isNullOrBlank()) {
-            listOf(
-                "tavall-cloud",
-                "tavall-logging",
-                "tavall-concurrency",
-                "tavall-reflection",
-                "tavall-di",
-                "tavall-eventbus",
-                "tavall-cache",
-                "tavall-database",
-                "tavall-registry",
-                "tavall-scheduler",
-            ).forEach { repository ->
-                maven("https://maven.pkg.github.com/TavallStudios/$repository") {
-                    name = "github${repository.replace("-", "")}"
-                    credentials {
-                        username = providers.environmentVariable("GITHUB_ACTOR").orElse("github").get()
-                        password = githubToken
-                    }
-                }
+        mavenCentral {
+            content {
+                excludeGroupByRegex("org\\.tavall(?:\\..*)?")
+                excludeGroupByRegex("com\\.tavall(?:\\..*)?")
             }
         }
     }
@@ -221,5 +204,17 @@ project(":abstract-cache-suite") {
         classpath = integrationTestSourceSet.runtimeClasspath
         useJUnitPlatform()
         shouldRunAfter(tasks.named("test"))
+    }
+}
+
+
+subprojects {
+    val artifactFileName = "$name.jar"
+    tasks.register<Copy>("tavallCiArtifact") {
+        val binaryJar = tasks.named<Jar>("jar")
+        dependsOn(binaryJar)
+        from(binaryJar.flatMap { it.archiveFile })
+        into(rootProject.layout.buildDirectory.dir("tavall-ci-artifacts"))
+        rename { artifactFileName }
     }
 }

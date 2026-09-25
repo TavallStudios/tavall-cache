@@ -1,0 +1,98 @@
+version: 2
+
+source:
+  repository: TavallStudios/tavall-cache
+  provider: github
+
+build:
+  type: gradle
+  java: 25
+  gradle: 9.6.1
+
+resources:
+  mode: SYSTEM
+
+dependencies:
+  - kind: source
+    identity: TavallStudios/tavall-di
+    role: SHARED_DEP
+    selector: required-source
+  - kind: source
+    identity: TavallStudios/tavall-logging
+    role: SHARED_DEP
+    selector: required-source
+
+artifacts:
+  - name: abstract-cache-system
+    path: build/tavall-ci-artifacts/abstract-cache-system.jar
+  - name: abstract-cache-semantic
+    path: build/tavall-ci-artifacts/abstract-cache-semantic.jar
+  - name: abstract-cache-storage-memory
+    path: build/tavall-ci-artifacts/abstract-cache-storage-memory.jar
+  - name: abstract-cache-storage-disk
+    path: build/tavall-ci-artifacts/abstract-cache-storage-disk.jar
+  - name: abstract-cache-storage-redis
+    path: build/tavall-ci-artifacts/abstract-cache-storage-redis.jar
+  - name: abstract-cache-storage-mongo
+    path: build/tavall-ci-artifacts/abstract-cache-storage-mongo.jar
+  - name: abstract-cache-storage-postgres
+    path: build/tavall-ci-artifacts/abstract-cache-storage-postgres.jar
+  - name: abstract-cache-storage-qdrant
+    path: build/tavall-ci-artifacts/abstract-cache-storage-qdrant.jar
+
+requiredChecks:
+  - quality
+  - integration
+  - artifact
+
+checks:
+  quality:
+    executor: gradle
+    tasks:
+      - "clean"
+      - ":abstract-cache-system:clean"
+      - ":abstract-cache-semantic:clean"
+      - ":abstract-cache-storage-memory:clean"
+      - ":abstract-cache-storage-disk:clean"
+      - ":abstract-cache-storage-redis:clean"
+      - ":abstract-cache-storage-mongo:clean"
+      - ":abstract-cache-storage-postgres:clean"
+      - ":abstract-cache-storage-qdrant:clean"
+      - ":abstract-cache-suite:clean"
+      - "check"
+      - ":abstract-cache-system:check"
+      - ":abstract-cache-semantic:check"
+      - ":abstract-cache-storage-memory:check"
+      - ":abstract-cache-storage-disk:check"
+      - ":abstract-cache-storage-redis:check"
+      - ":abstract-cache-storage-mongo:check"
+      - ":abstract-cache-storage-postgres:check"
+      - ":abstract-cache-storage-qdrant:check"
+      - ":abstract-cache-suite:check"
+      - "assemble"
+      - ":abstract-cache-system:assemble"
+      - ":abstract-cache-semantic:assemble"
+      - ":abstract-cache-storage-memory:assemble"
+      - ":abstract-cache-storage-disk:assemble"
+      - ":abstract-cache-storage-redis:assemble"
+      - ":abstract-cache-storage-mongo:assemble"
+      - ":abstract-cache-storage-postgres:assemble"
+      - ":abstract-cache-storage-qdrant:assemble"
+      - ":abstract-cache-suite:assemble"
+
+  integration:
+    executor: gradle
+    tasks:
+      - ":abstract-cache-suite:integrationTest"
+
+  artifact:
+    executor: gradle
+    tasks:
+      - :abstract-cache-system:tavallCiArtifact
+      - :abstract-cache-semantic:tavallCiArtifact
+      - :abstract-cache-storage-memory:tavallCiArtifact
+      - :abstract-cache-storage-disk:tavallCiArtifact
+      - :abstract-cache-storage-redis:tavallCiArtifact
+      - :abstract-cache-storage-mongo:tavallCiArtifact
+      - :abstract-cache-storage-postgres:tavallCiArtifact
+      - :abstract-cache-storage-qdrant:tavallCiArtifact
