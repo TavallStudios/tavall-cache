@@ -24,6 +24,7 @@ dependencies:
 
 requiredChecks:
   - quality
+  - integration
 
 checks:
   quality:
@@ -59,3 +60,8 @@ checks:
       - ":abstract-cache-storage-postgres:assemble"
       - ":abstract-cache-storage-qdrant:assemble"
       - ":abstract-cache-suite:assemble"
+
+  integration:
+    executor: gradle
+    tasks:
+      - ":abstract-cache-suite:integrationTest"
