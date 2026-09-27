@@ -49,7 +49,7 @@ Runtime owner: `None`. No Deployment record applies to this library or test-only
 
 - **Module Type:** `ADAPTER`
 - **Runtime:** `None`
-- **Current PR Stack:** [staging integration #10](https://github.com/TavallStudios/tavall-cache/pull/10) and [CI transition #11](https://github.com/TavallStudios/tavall-cache/pull/11); documentation update: __PR_LINK__.
+- **Current PR Stack:** [staging integration #10](https://github.com/TavallStudios/tavall-cache/pull/10) and [CI transition #11](https://github.com/TavallStudios/tavall-cache/pull/11); documentation update: [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14).
 - Repository-specific development guide: [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 
@@ -60,13 +60,13 @@ Runtime owner: `None`. No Deployment record applies to this library or test-only
 
 | Surface | Sync State | Location | Last Updated | Evidence |
 | --- | --- | --- | --- | --- |
-| GitHub | `PRIMARY` | `TavallStudios/tavall-cache/abstract-cache-storage-redis/README.md` | 2026-09-27 12:51 PM PDT | __PR_URL__ |
-| Notion | `NOT_APPLICABLE` | — | 2026-09-27 12:51 PM PDT | README routing surface; no 1:1 twin is assigned. |
+| GitHub | `PRIMARY` | `TavallStudios/tavall-cache/abstract-cache-storage-redis/README.md` | 2026-09-27 12:59 PM PDT | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) |
+| Notion | `NOT_APPLICABLE` | — | 2026-09-27 12:59 PM PDT | README routing surface; no 1:1 twin is assigned. |
 
 ### Update History
 
 | Timestamp | Surface | Event | Location | Previous Location | Evidence | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2026-09-27 12:51 PM PDT | GitHub | `CREATED` | `TavallStudios/tavall-cache/abstract-cache-storage-redis/README.md` | — | __PR_URL__ | Added a contextual module README with source-backed ownership and routing. |
+| 2026-09-27 12:59 PM PDT | GitHub | `CREATED` | `TavallStudios/tavall-cache/abstract-cache-storage-redis/README.md` | — | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) | Added a contextual module README with source-backed ownership and routing. |
 
 </details>
