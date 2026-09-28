@@ -38,6 +38,8 @@ tavall-cache/
 | --- | --- | --- | --- |
 | GENERAL | [Repository README](../README.md) | Public overview and module map. | GitHub |
 | Technical | [Contribution guide](../CONTRIBUTING.md) | Repository-specific development and validation. | GitHub |
+| Progression | [Abstract Cache Storage Postgres Progression](../docs/progression/ABSTRACT_CACHE_STORAGE_POSTGRES_PROGRESSION.md) | Module implementation, validation, and history. | GitHub |
+| Progression | [Tavall Cache System Progression](../docs/progression/TAVALL_CACHE_SYSTEM_PROGRESSION.md) | Cross-module architecture and system acceptance. | GitHub |
 
 ## Deployment
 
@@ -52,6 +54,8 @@ Runtime owner: `None`. No Deployment record applies to this library or test-only
 - **Current PR Stack:** [staging integration #10](https://github.com/TavallStudios/tavall-cache/pull/10) and [CI transition #11](https://github.com/TavallStudios/tavall-cache/pull/11); documentation update: [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14).
 - Repository-specific development guide: [CONTRIBUTING.md](../CONTRIBUTING.md).
 
+- **Progression:** [Module Progression](../docs/progression/ABSTRACT_CACHE_STORAGE_POSTGRES_PROGRESSION.md) · [System Progression](../docs/progression/TAVALL_CACHE_SYSTEM_PROGRESSION.md).
+- **Module CI:** Missing in audited main: `.tavallci/ci.yaml`.
 
 <details>
 <summary>Documentation Update State</summary>
@@ -60,7 +64,7 @@ Runtime owner: `None`. No Deployment record applies to this library or test-only
 
 | Surface | Sync State | Location | Last Updated | Evidence |
 | --- | --- | --- | --- | --- |
-| GitHub | `PRIMARY` | `TavallStudios/tavall-cache/abstract-cache-storage-postgres/README.md` | 2026-09-27 12:59 PM PDT | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) |
+| GitHub | `PRIMARY` | `TavallStudios/tavall-cache/abstract-cache-storage-postgres/README.md` | 2026-09-27 5:59 PM PDT | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) |
 | Notion | `NOT_APPLICABLE` | — | 2026-09-27 12:59 PM PDT | README routing surface; no 1:1 twin is assigned. |
 
 ### Update History
@@ -68,5 +72,6 @@ Runtime owner: `None`. No Deployment record applies to this library or test-only
 | Timestamp | Surface | Event | Location | Previous Location | Evidence | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2026-09-27 12:59 PM PDT | GitHub | `CREATED` | `TavallStudios/tavall-cache/abstract-cache-storage-postgres/README.md` | — | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) | Added a contextual module README with source-backed ownership and routing. |
+| 2026-09-27 5:59 PM PDT | GitHub | `UPDATED` | `TavallStudios/tavall-cache/abstract-cache-storage-postgres/README.md` | `TavallStudios/tavall-cache/abstract-cache-storage-postgres/README.md` | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) | Added module and System Progression routes and recorded module CI state. |
 
 </details>
