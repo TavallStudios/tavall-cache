@@ -44,7 +44,7 @@ The base module supplies common types. The semantic module adds routing and tier
 - [Contribution guide](CONTRIBUTING.md) — repository-specific development and validation.
 - [Workflow compatibility pointer](docs/quality/GIT_WORKFLOW.md) — redirects to shared policy.
 - [Tavall Docs Git Workflow](https://github.com/TavallStudios/tavall-docs/blob/main/docs/quality/GIT_WORKFLOW.md) — shared contribution and review guidance.
-
+- [Tavall Cache System Progression](docs/progression/TAVALL_CACHE_SYSTEM_PROGRESSION.md) — cross-module architecture, validation, and system history.
 
 ## Requirements / Compatibility
 
@@ -70,7 +70,7 @@ No license file is currently tracked in this repository. Contact the maintainers
 
 | Surface | Sync State | Location | Last Updated | Evidence |
 | --- | --- | --- | --- | --- |
-| GitHub | `PRIMARY` | `TavallStudios/tavall-cache/README.md` | 2026-09-27 12:59 PM PDT | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) |
+| GitHub | `PRIMARY` | `TavallStudios/tavall-cache/README.md` | 2026-09-27 5:59 PM PDT | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) |
 | Notion | `NOT_APPLICABLE` | — | 2026-09-27 12:59 PM PDT | README routing surface; no 1:1 twin is assigned. |
 
 ### Update History
@@ -78,5 +78,6 @@ No license file is currently tracked in this repository. Contact the maintainers
 | Timestamp | Surface | Event | Location | Previous Location | Evidence | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2026-09-27 12:59 PM PDT | GitHub | `UPDATED` | `TavallStudios/tavall-cache/README.md` | `TavallStudios/tavall-cache/README.md` | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) | Reworked the public root README to route contributors and map the current modules. |
+| 2026-09-27 5:59 PM PDT | GitHub | `UPDATED` | `TavallStudios/tavall-cache/README.md` | `TavallStudios/tavall-cache/README.md` | [PR #14](https://github.com/TavallStudios/tavall-cache/pull/14) | Added the system Progression route. |
 
 </details>
