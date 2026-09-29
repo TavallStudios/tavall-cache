@@ -43,7 +43,6 @@ artifacts:
 requiredChecks:
   - quality
   - integration
-  - artifact
 
 checks:
   quality:
@@ -79,6 +78,7 @@ checks:
       - ":abstract-cache-storage-postgres:assemble"
       - ":abstract-cache-storage-qdrant:assemble"
       - ":abstract-cache-suite:assemble"
+      - "stageTavallCiArtifacts"
 
   integration:
     executor: gradle
@@ -89,3 +89,4 @@ checks:
     executor: gradle
     tasks:
       - stageTavallCiArtifacts
+    includeInAll: false
