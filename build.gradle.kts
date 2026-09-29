@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.Copy
 import java.util.zip.ZipFile
 
 plugins {
@@ -34,28 +35,10 @@ subprojects {
     }
 
     repositories {
-        mavenCentral()
-        val githubToken = providers.environmentVariable("GITHUB_TOKEN").orNull
-        if (!githubToken.isNullOrBlank()) {
-            listOf(
-                "tavall-cloud",
-                "tavall-logging",
-                "tavall-concurrency",
-                "tavall-reflection",
-                "tavall-di",
-                "tavall-eventbus",
-                "tavall-cache",
-                "tavall-database",
-                "tavall-registry",
-                "tavall-scheduler",
-            ).forEach { repository ->
-                maven("https://maven.pkg.github.com/TavallStudios/$repository") {
-                    name = "github${repository.replace("-", "")}"
-                    credentials {
-                        username = providers.environmentVariable("GITHUB_ACTOR").orElse("github").get()
-                        password = githubToken
-                    }
-                }
+        mavenCentral {
+            content {
+                excludeGroupByRegex("org\\.tavall(?:\\..*)?")
+                excludeGroupByRegex("com\\.tavall(?:\\..*)?")
             }
         }
     }
@@ -222,4 +205,28 @@ project(":abstract-cache-suite") {
         useJUnitPlatform()
         shouldRunAfter(tasks.named("test"))
     }
+}
+
+
+val tavallCiArtifactModules = listOf(
+    ":abstract-cache-system",
+    ":abstract-cache-semantic",
+    ":abstract-cache-storage-memory",
+    ":abstract-cache-storage-disk",
+    ":abstract-cache-storage-redis",
+    ":abstract-cache-storage-mongo",
+    ":abstract-cache-storage-postgres",
+    ":abstract-cache-storage-qdrant"
+)
+
+tasks.register<Copy>("stageTavallCiArtifacts") {
+    tavallCiArtifactModules.forEach { modulePath ->
+        val module = project(modulePath)
+        val binaryJar = module.tasks.named<Jar>("jar")
+        dependsOn(binaryJar)
+        from(binaryJar.flatMap { it.archiveFile }) {
+            rename { "${module.name}.jar" }
+        }
+    }
+    into(layout.buildDirectory.dir("tavall-ci-artifacts"))
 }
