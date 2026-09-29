@@ -88,11 +88,4 @@ checks:
   artifact:
     executor: gradle
     tasks:
-      - :abstract-cache-system:tavallCiArtifact
-      - :abstract-cache-semantic:tavallCiArtifact
-      - :abstract-cache-storage-memory:tavallCiArtifact
-      - :abstract-cache-storage-disk:tavallCiArtifact
-      - :abstract-cache-storage-redis:tavallCiArtifact
-      - :abstract-cache-storage-mongo:tavallCiArtifact
-      - :abstract-cache-storage-postgres:tavallCiArtifact
-      - :abstract-cache-storage-qdrant:tavallCiArtifact
+      - stageTavallCiArtifacts

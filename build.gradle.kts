@@ -208,13 +208,25 @@ project(":abstract-cache-suite") {
 }
 
 
-subprojects {
-    val artifactFileName = "$name.jar"
-    tasks.register<Copy>("tavallCiArtifact") {
-        val binaryJar = tasks.named<Jar>("jar")
+val tavallCiArtifactModules = listOf(
+    ":abstract-cache-system",
+    ":abstract-cache-semantic",
+    ":abstract-cache-storage-memory",
+    ":abstract-cache-storage-disk",
+    ":abstract-cache-storage-redis",
+    ":abstract-cache-storage-mongo",
+    ":abstract-cache-storage-postgres",
+    ":abstract-cache-storage-qdrant"
+)
+
+tasks.register<Copy>("stageTavallCiArtifacts") {
+    tavallCiArtifactModules.forEach { modulePath ->
+        val module = project(modulePath)
+        val binaryJar = module.tasks.named<Jar>("jar")
         dependsOn(binaryJar)
-        from(binaryJar.flatMap { it.archiveFile })
-        into(rootProject.layout.buildDirectory.dir("tavall-ci-artifacts"))
-        rename { artifactFileName }
+        from(binaryJar.flatMap { it.archiveFile }) {
+            rename { "${module.name}.jar" }
+        }
     }
+    into(layout.buildDirectory.dir("tavall-ci-artifacts"))
 }
